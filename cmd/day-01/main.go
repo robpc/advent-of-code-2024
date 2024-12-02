@@ -9,11 +9,12 @@ import (
 	"strings"
 )
 
-func main() {
-	fmt.Println("Hello, World!")
-	var input = my.ReadFile("./inputs/day-01/input.txt")
+const DAY = 2
 
-	split1 := strings.Split(input, "\n")
+func main() {
+	var input = my.ReadFile(fmt.Sprintf("./inputs/day-%02v/input.txt", DAY))
+
+	split1 := my.SplitLines(input)
 
 	var left []int
 	var right []int
@@ -44,7 +45,7 @@ func main() {
 
 	var n int = my.Sum(distance)
 
-	fmt.Println("Day 01: Part 1")
+	fmt.Printf("Day %02v: Part 1\n", DAY)
 	fmt.Println(n)
 
 	var similarity []int
@@ -62,7 +63,7 @@ func main() {
 
 	var n2 int = my.Sum(similarity)
 
-	fmt.Println("Day 01: Part 2")
+	fmt.Printf("Day %02v: Part 2\n", DAY)
 	fmt.Println(n2)
 
 }

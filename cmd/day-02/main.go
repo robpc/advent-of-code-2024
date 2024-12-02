@@ -49,22 +49,26 @@ func removeOne(arr []int, n int) []int {
 	return r
 }
 
+func columnsToInt(s string) []int {
+	var arr []int
+	for _, i := range strings.Split(s, " ") {
+		x, err := strconv.Atoi(i)
+		if err != nil {
+			log.Fatal(err)
+		}
+		arr = append(arr, x)
+	}
+	return arr
+}
+
 func main() {
 	var input = my.ReadFile(fmt.Sprintf("./inputs/day-%02v/input.txt", DAY))
 
-	reports := strings.Split(input, "\n")
+	reports := my.SplitLines(input)
 
 	n := 0
-	// var deltas [][]int
 	for _, r := range reports {
-		var l []int
-		for _, i := range strings.Split(r, " ") {
-			x, err := strconv.Atoi(i)
-			if err != nil {
-				log.Fatal(err)
-			}
-			l = append(l, x)
-		}
+		l := columnsToInt(r)
 
 		if isSafe(l) {
 			n++
@@ -76,25 +80,18 @@ func main() {
 
 	n2 := 0
 	for _, r := range reports {
-		var l []int
-		for _, i := range strings.Split(r, " ") {
-			x, err := strconv.Atoi(i)
-			if err != nil {
-				log.Fatal(err)
-			}
-			l = append(l, x)
-		}
+		l := columnsToInt(r)
 
-		if isSafe(l) {
-			n2++
-		} else {
-			safe := false
+		safe := isSafe(l)
+
+		if !safe {
 			for i := range l {
 				safe = safe || isSafe(removeOne(l, i))
 			}
-			if safe {
-				n2++
-			}
+		}
+
+		if safe {
+			n2++
 		}
 	}
 	fmt.Printf("Day %02v: Part 2\n", DAY)

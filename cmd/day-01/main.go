@@ -3,40 +3,17 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
+	my "robpc/advent-of-code-2024/internal/my"
 	"slices"
 	"strconv"
 	"strings"
 )
 
-func readFile(filename string) string {
-  data, err := os.ReadFile(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
 
-	// Convert the byte slice to a string
-	return string(data)
-}
-
-func sum(arr []int) int {
-  sum := 0
-  for _,x := range arr {
-    sum += x
-  }
-  return sum
-}
-
-func abs(x int) int {
-  if x < 0 {
-    return -x
-  }
-  return x
-}
 
 func main() {
     fmt.Println("Hello, World!")
-    var input = readFile("./inputs/day-01/input.txt")
+    var input = my.ReadFile("./inputs/day-01/input.txt")
 
     split1 := strings.Split(input, "\n")
 
@@ -64,10 +41,10 @@ func main() {
     var distance []int
 
     for i := range left {
-      distance = append(distance, abs(left[i] - right[i]))
+      distance = append(distance, my.Abs(left[i] - right[i]))
     }
 
-    var n int = sum(distance)
+    var n int = my.Sum(distance)
  
     fmt.Println("Day 01: Part 1")
     fmt.Println(n)
@@ -85,7 +62,7 @@ func main() {
       similarity = append(similarity, x * c)
     }
 
-    var n2 int = sum(similarity)
+    var n2 int = my.Sum(similarity)
  
     fmt.Println("Day 01: Part 2")
     fmt.Println(n2)

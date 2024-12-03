@@ -66,35 +66,38 @@ func main() {
 
 	reports := my.SplitLines(input)
 
-	n := 0
-	for _, r := range reports {
-		l := columnsToInt(r)
+	{
+		n := 0
+		for _, r := range reports {
+			l := columnsToInt(r)
 
-		if isSafe(l) {
-			n++
-		}
-	}
-
-	fmt.Printf("Day %02v: Part 1\n", DAY)
-	fmt.Println(n)
-
-	n2 := 0
-	for _, r := range reports {
-		l := columnsToInt(r)
-
-		safe := isSafe(l)
-
-		if !safe {
-			for i := range l {
-				safe = safe || isSafe(removeOne(l, i))
+			if isSafe(l) {
+				n++
 			}
 		}
 
-		if safe {
-			n2++
-		}
+		fmt.Printf("\nDay %02v: Part 1\n", DAY)
+		fmt.Println(n)
 	}
-	fmt.Printf("Day %02v: Part 2\n", DAY)
-	fmt.Println(n2)
 
+	{
+		n := 0
+		for _, r := range reports {
+			l := columnsToInt(r)
+
+			safe := isSafe(l)
+
+			if !safe {
+				for i := range l {
+					safe = safe || isSafe(removeOne(l, i))
+				}
+			}
+
+			if safe {
+				n++
+			}
+		}
+		fmt.Printf("\nDay %02v: Part 2\n", DAY)
+		fmt.Println(n)
+	}
 }

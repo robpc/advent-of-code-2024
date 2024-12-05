@@ -2,11 +2,8 @@ package main
 
 import (
 	"fmt"
-	"log"
 	my "robpc/advent-of-code-2024/internal/my"
 	"slices"
-	"strconv"
-	"strings"
 )
 
 const DAY = 1
@@ -14,25 +11,8 @@ const DAY = 1
 func main() {
 	var input = my.ReadFile(fmt.Sprintf("./inputs/day-%02v/input.txt", DAY))
 
-	split1 := my.SplitLines(input)
-
-	var left []int
-	var right []int
-
-	for _, element := range split1 {
-		s := strings.Split(element, "   ")
-		l, err := strconv.Atoi(s[0])
-		if err != nil {
-			log.Fatal(err)
-		}
-		r, err := strconv.Atoi(s[1])
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		left = append(left, l)
-		right = append(right, r)
-	}
+	grid := my.IntGridFromString(input, "   ", "\n")
+	left, right := my.UnzipIntGrid(grid)
 
 	slices.Sort(left)
 	slices.Sort(right)

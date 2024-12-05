@@ -4,7 +4,6 @@ import (
 	"fmt"
 	my "robpc/advent-of-code-2024/internal/my"
 	"slices"
-	"strconv"
 	"strings"
 )
 
@@ -15,28 +14,9 @@ func main() {
 
 	sets := strings.Split(input, "\n\n")
 
-	rulesInput := strings.Split(sets[0], "\n")
+	rules := my.IntGridFromString(sets[0], "|", "\n")
 
-	var rules [][2]int = [][2]int{}
-	for _, line := range rulesInput {
-		r := strings.Split(line, "|")
-		before, _ := strconv.Atoi(r[0])
-		after, _ := strconv.Atoi(r[1])
-
-		rules = append(rules, [2]int{before, after})
-	}
-
-	updatesInput := strings.Split(sets[1], "\n")
-
-	var updates [][]int = [][]int{}
-	for i, line := range updatesInput {
-		r := strings.Split(line, ",")
-		updates = append(updates, []int{})
-		for _, s := range r {
-			n, _ := strconv.Atoi(s)
-			updates[i] = append(updates[i], n)
-		}
-	}
+	updates := my.IntGridFromString(sets[1], ",", "\n")
 
 	var goodUpdates = [][]int{}
 	var badUpdates = [][]int{}

@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"log"
 	my "robpc/advent-of-code-2024/internal/my"
-	"strconv"
 	"strings"
 )
 
@@ -49,27 +47,15 @@ func removeOne(arr []int, n int) []int {
 	return r
 }
 
-func columnsToInt(s string) []int {
-	var arr []int
-	for _, i := range strings.Split(s, " ") {
-		x, err := strconv.Atoi(i)
-		if err != nil {
-			log.Fatal(err)
-		}
-		arr = append(arr, x)
-	}
-	return arr
-}
-
 func main() {
 	var input = my.ReadFile(fmt.Sprintf("./inputs/day-%02v/input.txt", DAY))
 
-	reports := my.SplitLines(input)
+	reports := strings.Split(input, "\n")
 
 	{
 		n := 0
 		for _, r := range reports {
-			l := columnsToInt(r)
+			l := my.StringIntSplit(r, " ")
 
 			if isSafe(l) {
 				n++
@@ -83,7 +69,7 @@ func main() {
 	{
 		n := 0
 		for _, r := range reports {
-			l := columnsToInt(r)
+			l := my.StringIntSplit(r, " ")
 
 			safe := isSafe(l)
 

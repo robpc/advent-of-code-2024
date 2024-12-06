@@ -44,6 +44,18 @@ func StringIntSplit(input string, sep string) []int {
 	return arr
 }
 
+func StringGrid(input string, xSep string, ySep string) [][]string {
+	var grid [][]string = [][]string{}
+
+	lineArray := strings.Split(input, ySep)
+
+	for _, line := range lineArray {
+		grid = append(grid, strings.Split(line, xSep))
+	}
+
+	return grid
+}
+
 func IntGridFromString(input string, xSep string, ySep string) [][]int {
 	var grid [][]int = [][]int{}
 

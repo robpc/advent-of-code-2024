@@ -7,16 +7,6 @@ import (
 	"strings"
 )
 
-func ReadFile(filename string) string {
-	data, err := os.ReadFile(filename)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Convert the byte slice to a string
-	return string(data)
-}
-
 func Sum(arr []int) int {
 	sum := 0
 	for _, x := range arr {
@@ -30,6 +20,24 @@ func Abs(x int) int {
 		return -x
 	}
 	return x
+}
+
+func ToInt(s string) int {
+	i, err := strconv.Atoi(s)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return i
+}
+
+func ReadFile(filename string) string {
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Convert the byte slice to a string
+	return string(data)
 }
 
 func StringIntSplit(input string, sep string) []int {

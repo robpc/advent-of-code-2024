@@ -14,7 +14,6 @@ const DAY = 9
 type Block []int
 
 func (b Block) String() string {
-	// chunks := slices.Chunk(b,120)
 	out := []string{}
 	for c := range slices.Chunk(b, 64) {
 		bin := ""

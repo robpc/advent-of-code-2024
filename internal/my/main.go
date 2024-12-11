@@ -1,12 +1,29 @@
 package my
 
 import (
+	"fmt"
 	"log"
 	"math"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
+
+// timer returns a function that prints the name argument and
+// the elapsed time between the call to timer and the call to
+// the returned function. The returned function is intended to
+// be used in a defer statement:
+//
+//	defer timer("sum")()
+func Timer(name string) func() {
+	fmt.Printf("==== %s ====\n", name)
+	start := time.Now()
+
+	return func() {
+		fmt.Printf("==== took %v ====\n", time.Since(start))
+	}
+}
 
 func Mod(n int, m int) float64 {
 	return math.Mod(float64(n), 2)

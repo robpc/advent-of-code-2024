@@ -62,7 +62,6 @@ func get(stones []int, i int) int {
 	key := fmt.Sprint(stones, i)
 	n, ok := cache[key]
 	if !ok {
-		// n = oneOf(stones, i)
 
 		n = 0
 		if i == 0 {
@@ -102,10 +101,13 @@ func main() {
 		fmt.Println("Using puzzle input")
 		input = puzzle
 	}
+	fmt.Println()
 
 	list := my.StringIntSplit(input, " ")
 
-	{
+	func() {
+		defer my.Timer(fmt.Sprintf("Day %02v: Part 1", DAY))()
+
 		n := 0
 
 		stones := make([]int, len(list))
@@ -117,11 +119,14 @@ func main() {
 
 		n = len(stones)
 
-		fmt.Printf("\n[Day %02v: Part 1]\n", DAY)
-		fmt.Println(n)
-	}
+		fmt.Println("---\nSolution: ", n)
+	}()
 
-	{
+	fmt.Println()
+
+	func() {
+		defer my.Timer(fmt.Sprintf("Day %02v: Part 2", DAY))()
+
 		n := 0
 
 		stones := make([]int, len(list))
@@ -131,8 +136,7 @@ func main() {
 
 		fmt.Println("Cache Stats:", stats, "Items:", len(cache))
 
-		fmt.Printf("\n[Day %02v: Part 2]\n", DAY)
-		fmt.Println(n)
-	}
+		fmt.Println("---\nSolution: ", n)
+	}()
 
 }

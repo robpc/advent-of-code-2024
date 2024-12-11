@@ -2,10 +2,15 @@ package my
 
 import (
 	"log"
+	"math"
 	"os"
 	"strconv"
 	"strings"
 )
+
+func Mod(n int, m int) float64 {
+	return math.Mod(float64(n), 2)
+}
 
 func Sum(arr []int) int {
 	sum := 0
